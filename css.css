@@ -1,0 +1,16 @@
+.form{
+	text-align: center;
+	margin: 30px auto;
+}
+
+.table{
+	font-size: 20px;
+	text-align: center;
+	margin-left: 490px;
+	border: 2px solid black;
+}
+
+label.label{
+	font-size: 25px;
+}
+

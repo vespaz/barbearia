@@ -8,7 +8,8 @@
 <html lang="pt-Br">
 	<head>
 		<meta charset="UTF-8"/>
-		<title></title>
+		<title>Index da Barbearia</title>
+		<link rel="stylesheet" type="text/css" href="css.css">
 		<script src="jquery-3.3.1.min.js"></script>
 		
 		<script>
@@ -62,6 +63,7 @@
 	</head>
 	
 	<body>
+		<img src="barba.png" />
 		<form id="form" class="form">
 			
 			<label class="label">Nome Serviço: </label>
@@ -87,9 +89,11 @@
 			
 			<br />
 			<br />
+			<br />
+			<br />
 			<div id="status">Status Operação</div>
 		</form>
-		<table border="1">
+		<table class="table">
 			<thead>
 				<tr>
 					<th>Nome</th>
