@@ -10,6 +10,7 @@
 		<meta charset="UTF-8"/>
 		<title>Index da Barbearia</title>
 		<link rel="stylesheet" type="text/css" href="css.css">
+		
 		<script src="jquery-3.3.1.min.js"></script>
 		
 		<script>
@@ -54,7 +55,13 @@
 						  "</tr>";
 				          $("table").append(nova_linha);
 				          $("#status").html("<b>Cadastrado!!!</b>");
-				     })
+				    })
+					
+					.fail(function(jqXHR, textStatus, msg){
+						
+						alert(msg);
+						
+					});
 					
 				});
 			
@@ -64,6 +71,12 @@
 	
 	<body>
 		<img src="barba.png" />
+		
+		<p class="a">
+			<button><a href="index.php">Serviços</a></button>
+			<button><a href="produtos.php">Produtos</a></button>
+		</p>
+		
 		<form id="form" class="form">
 			
 			<label class="label">Nome Serviço: </label>
@@ -72,12 +85,12 @@
 			<br />
 			
 			<label class="label">Preço: </label>
-			<input type="number" name="preco" id="preco" step="0.5"/>
+			<input type="number" name="preco" id="preco" step="0.01"/>
 			<br />
 			<br />
 			
-			<label>Adicionar brinde: </label>
-			<!-- Brindes ficaram aqui -->
+			<label class="label">Adicionar brinde: </label>
+			<input type="text" name="brinde" id="brinde" placeholder="Adicionar novo brinde" />
 			
 			<br />
 			<br />
@@ -85,15 +98,12 @@
 			
 			<br />
 			<br />
-			<input type="text" name="brinde" id="brinde" placeholder="Adicionar novo brinde" />
-			
-			<br />
-			<br />
 			<br />
 			<br />
 			<div id="status">Status Operação</div>
 		</form>
-		<table class="table">
+		
+		<table class="table" border="1">
 			<thead>
 				<tr>
 					<th>Nome</th>
@@ -109,13 +119,13 @@
 				while($linha=mysqli_fetch_assoc($resultado)){
 					echo "<tr>
 							<td class='alt_nome_servico'  value='$linha[id_barbearia]'>$linha[nome_servico]</td>	
-							<td class='alt_sigla'  value='$linha[id_barbearia]'>$linha[preco]</td>
-							<td class='alt_sigla'  value='$linha[id_barbearia]'>$linha[brinde]</td>
+							<td class='alt_preco'  value='$linha[id_barbearia]'>$linha[preco]</td>
+							<td class='alt_brinde'  value='$linha[id_barbearia]'>$linha[brinde]</td>
 							<td>							
 								<button class='btn_alterar' value='$linha[id_barbearia]'>Alterar</button>
 								<button class='btn_excluir' value='$linha[id_barbearia]'>Remover</button>
 							</td>
-						  </tr>";
+						</tr>";
 				}
 			?>
 			</tbody>
