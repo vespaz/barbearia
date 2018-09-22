@@ -65,7 +65,7 @@
 				});
 				
 				$("#varejo").click(function(){
-       
+					
 					$('#esconder').css('visibility', 'hidden');
 
 				});
@@ -141,19 +141,20 @@
 				<?php 
 					include "conexao.php";
 					
-					while($linha=mysqli_fetch_array($resultado)){
-						echo "<tr>
-								<td class='alt_nome_produto'  value='$linha[id_produto]'>$linha[nome_produto]</td>	
-								<td class='alt_preco'  value='$linha[id_produto]'>$linha[preco]</td>
+					while($linha=mysqli_fetch_assoc($resultado)){
+						echo "<tr>";
+								echo "<td class='alt_nome_produto'  value='$linha[id_produto]'>$linha[nome_produto]</td>";
 								
-								<td class='alt_varejo'  value='$linha[id_produto]'>'" . $linha["qtdMin"] ."' / '" . $linha["desconto"] . "'</td>
+								echo "<td class='alt_preco'  value='$linha[id_produto]'>$linha[preco]</td>";
 								
-								<td class='alt_varejo'  value='$linha[id_produto]'>$linha[varejo]</td>
-								<td>							
+								echo "<td class='alt_varejo'  value='$linha[id_produto]'>'" . $linha["qtdMin"] ."' / '" . $linha["desconto"] . "'</td>";
+								
+								echo "<td class='alt_varejo'  value='$linha[id_produto]'>$linha[varejo]</td>";
+								echo "<td>							
 									<button class='btn_alterar' value='$linha[id_produto]'>Alterar</button>
 									<button class='btn_excluir' value='$linha[id_produto]'>Remover</button>
-								</td>
-							</tr>";
+								</td>";
+						echo "</tr>";
 					}
 				?>
 			</tbody>

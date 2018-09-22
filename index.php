@@ -39,20 +39,14 @@
 					.done(function(msg){
 				     	  var nova_linha =
 						  
-				     	  "<tr>" +
-							"<td>" + $("#nome_servico").val() + "</td>	" +
-							
-							"<td>" + $("#preco").val() + "</td>" +
-							
-							"<td>" + $("#brinde").val() + "</td>" +
-							
-							"<td>" +							
-							
-								"<button value='" + msg + "' class='btn_excluir'>Remover</button>" +
-								
-							"</td>" +
-							
-						  "</tr>";
+				     	    "<tr>" +
+								"<td>" + $("#nome_servico").val() + "</td>	" +							
+								"<td>" + $("#preco").val() + "</td>" +							
+								"<td>" + $("#brinde").val() + "</td>" +							
+								"<td>" +														
+									"<button value='" + msg + "' class='btn_excluir'>Remover</button>" +
+								"</td>" +							
+						    "</tr>";
 				          $("table").append(nova_linha);
 				          $("#status").html("<b>Cadastrado!!!</b>");
 				    })
@@ -62,7 +56,6 @@
 						alert(msg);
 						
 					});
-					
 				});
 			
 			});

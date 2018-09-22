@@ -13,5 +13,6 @@
 	mysqli_query($link,$insert) or die("erro");
 
 	$id_inserido = mysqli_insert_id($link);
+	echo $link;
 	echo $id_inserido;
 ?>
