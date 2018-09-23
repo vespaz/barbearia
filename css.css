@@ -3,11 +3,12 @@
 	margin: 30px auto;
 }
 
-.table{
-	font-size: 20px;
+table, tr, td, th{
+	font-size: 25px;
 	text-align: center;
-	margin-left: 490px;
+	margin: 0 auto;
 	border: 2px solid black;
+	font-family: arial;
 }
 
 label.label{

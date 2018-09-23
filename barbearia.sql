@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 21-Set-2018 às 21:48
+-- Data de Criação: 23-Set-2018 às 19:13
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `nome_produto` varchar(100) NOT NULL,
   `preco` double NOT NULL,
   `varejo` varchar(100) NOT NULL,
-  `qtdMin` int(100) NOT NULL,
-  `desconto` int(100) NOT NULL,
+  `qtdMin` varchar(100) NOT NULL,
+  `desconto` varchar(100) NOT NULL,
   PRIMARY KEY (`id_produto`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
@@ -43,8 +43,8 @@ CREATE TABLE IF NOT EXISTS `produto` (
 --
 
 INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco`, `varejo`, `qtdMin`, `desconto`) VALUES
-(3, 'Gel', 9.99, 'sim', 10, 0),
-(4, 'Pomada', 8.75, 'sim', 0, 0);
+(3, 'Gel', 9.99, 'sim', '10', '0'),
+(4, 'Pomada', 8.75, 'sim', '0', '0');
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `servico` (
   `preco` double NOT NULL,
   `brinde` varchar(100) NOT NULL,
   PRIMARY KEY (`id_barbearia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Extraindo dados da tabela `servico`
@@ -67,7 +67,8 @@ CREATE TABLE IF NOT EXISTS `servico` (
 INSERT INTO `servico` (`id_barbearia`, `nome_servico`, `preco`, `brinde`) VALUES
 (5, 'Barba', 25, ''),
 (6, 'Cabelo', 40, ''),
-(7, 'Corte', 10, 'leite');
+(7, 'Corte', 10, 'leite'),
+(8, 'Barba', 15, 'Vale Sorvete');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -8,8 +8,9 @@
 
 	$insert = "INSERT INTO servico(nome_servico, preco, brinde) VALUES ('$nome_servico','$preco', '$brinde')";
 
-	mysqli_query($link,$insert) or die("erro");
+	mysqli_query($link,$insert) or die( mysqli_error($link) );
 
 	$id_inserido = mysqli_insert_id($link);
 	echo $id_inserido;
+	
 ?>

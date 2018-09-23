@@ -1,10 +1,10 @@
-<?php 
-	$senha = "usbw";	
-	$usuario = "root";
-	$bd = "barbearia";	
-	$servidor = "localhost";	
+<?php
 	
-	$link = mysqli_connect($servidor, $usuario, $senha, $bd) ;
-
+	$senha = "usbw";
+	$usuario = "root";
+	$bd = "barbearia";
+	$servidor = "localhost";
+	
+	$link = mysqli_connect($servidor, $usuario, $senha, $bd);
 	
 ?>
