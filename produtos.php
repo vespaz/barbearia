@@ -206,7 +206,7 @@
 	
 	<body>
 	
-		<img src="barba.png" />
+		<div class="img"><img src="barba.png" /></div>
 		
 		<p class="a">
 			<button><a href="index.php">Serviços</a></button>
@@ -226,13 +226,13 @@
 			<br />
 			
 			<label class="label">Desconto no Varejo: </label>
-			<input type="radio" id='varejo' class="varejo" name="varejo" value="s" />Sim
-			<input type="radio" id='varejo' class="varejo" name="varejo" value="n" checked  />Não
+			<input type="radio" id='varejo' class="varejo" name="varejo" value="s" /><label class="label2">Sim</label>
+			<input type="radio" id='varejo' class="varejo" name="varejo" value="n" checked  /><label class="label2">Não</label>
 			<br />
 			<br />
 			
 			
-			<div id="esconder">
+			<div id="esconder" style="display:none">
 			
 				<label class="label" >Quantidade Mínima: </label>
 				<input type="number" id="qtdMin" name="qtdMin" step="1.0" />
@@ -255,62 +255,75 @@
 			<br />
 			<br />
 			<br />
-			<div id="status">Status Operação</div>
+			
 		</form>
 		
-		<table class="table" border="1">
 		
-			<thead>
+		<div class="table_css">
+		
+			<div id="status" class="status">Status Operação</div>
 			
-				<tr>
-					<th>Nome Produto</th>
-					<th>Preço</th>
-					<th colspan='2'>Varejo mínimo / Desconto (%)</th>
-					<th>Valor unitario com desconto</th>
-					<th>Ação</th>
-				</tr>
+			<br />
+		
+			<table class="table">
+			
+				<thead>
 				
-			</thead>
-			
-			<tbody>
-			
-				<?php
+					<tr>
+						<th>Nome Produto</th>
+						<th>Preço</th>
+						<th colspan='2'>Varejo mínimo / Desconto (%)</th>
+						<th>Valor unitario com desconto</th>
+						<th>Ação</th>
+					</tr>
+					
+				</thead>
 				
-					while($linha=mysqli_fetch_assoc($resultado)){
-						
-						if( $linha["varejo"] == "s" ){
+				<tbody>
+				
+					<?php
+					
+						while($linha=mysqli_fetch_assoc($resultado)){
 							
-							$descontao = $linha["preco"] - ($linha["preco"] * ($linha["desconto"] / 100));
-							$qtdMin = $linha["qtdMin"];
-							$desconto = $linha["desconto"];
+							if( $linha["varejo"] == "s" ){
+								
+								$descontao = $linha["preco"] - ($linha["preco"] * ($linha["desconto"] / 100));
+								$qtdMin = $linha["qtdMin"];
+								$desconto = $linha["desconto"];
+								
+							}else{
+								
+								$qtdMin = "N/A";
+								$desconto = "N/A";
+								$descontao = "N/A";
+								
+							}
 							
-						}else{
-							
-							$qtdMin = "N/A";
-							$desconto = "N/A";
-							$descontao = "N/A";
+							echo "<tr>
+									<td class='alt_nome'  value='$linha[id_produto]'>$linha[nome_produto]	</td>	
+									<td class='alt_preco' value='$linha[id_produto]'>$linha[preco]</td>
+									<td class='alt_unit'  value='$linha[id_produto]'>$qtdMin</td>
+									<td class='alt_desc'  value='$linha[id_produto]'>$desconto</td>
+									<td class='alt_desct' value='$linha[id_produto]'>$descontao</td>
+									<td>							
+										<button class='btn_alterar' value='$linha[id_produto]'>Alterar</button>
+										<button class='btn_excluir' value='$linha[id_produto]'>Remover</button>
+										</td>
+								</tr>";
 							
 						}
-						
-						echo "<tr>
-								<td class='alt_nome'  value='$linha[id_produto]'>$linha[nome_produto]	</td>	
-								<td class='alt_preco' value='$linha[id_produto]'>$linha[preco]</td>
-								<td class='alt_unit'  value='$linha[id_produto]'>$qtdMin</td>
-								<td class='alt_desc'  value='$linha[id_produto]'>$desconto</td>
-								<td class='alt_desct' value='$linha[id_produto]'>$descontao</td>
-								<td>							
-									<button class='btn_alterar' value='$linha[id_produto]'>Alterar</button>
-									<button class='btn_excluir' value='$linha[id_produto]'>Remover</button>
-									</td>
-							</tr>";
-						
-					}
+					
+					?>
+					
+				</tbody>
 				
-				?>
-				
-			</tbody>
-			
-		</table>
+			</table>
+		
+		</div>
+		
+		<br />
+		<br />
+		<br />
 		
 	</body>
 	

@@ -99,51 +99,58 @@
 			
 			<br />
 			<br />
+			<br />
 			<button id="cadastrar">Cadastrar Novo Serviço</button>
 			
 			<br />
 			<br />
 			<br />
-			<br />
-			<div id="status">Status Operação</div>
 		</form>
 		
-		<table class="table">
+		<div class="table_css">
 		
-			<thead>
+			<div id="status" class="status">Status Operação</div>
 			
-				<tr>
-					<th>Nome</th>
-					<th>Preço</th>
-					<th>O que tem direito</th>
-					<th>Ação</th>
-				</tr>
+			<br />
+		
+			<table class="table">
+			
+				<thead>
 				
-			</thead>
-			
-			<tbody>
-			
-				<?php
+					<tr>
+						<th>Nome</th>
+						<th>Preço</th>
+						<th>O que tem direito</th>
+						<th>Ação</th>
+					</tr>
+					
+				</thead>
 				
-					while($linha=mysqli_fetch_assoc($resultado)){
-						
-						echo "<tr>
-								<td class='alt_'  value='$linha[id_barbearia]'>$linha[nome_servico]</td>	
-								<td class='alt_'  value='$linha[id_barbearia]'>$linha[preco]</td>
-								<td class='alt_'  value='$linha[id_barbearia]'>$linha[brinde]</td>
+				<tbody>
+				
+					<?php
+					
+						while($linha=mysqli_fetch_assoc($resultado)){
+							
+							echo "<tr>
+								<td class='alt_nome'  value='$linha[id_barbearia]'>$linha[nome_servico]</td>	
+								<td class='alt_preco'  value='$linha[id_barbearia]'>$linha[preco]</td>
+								<td class='alt_brinde'  value='$linha[id_barbearia]'>$linha[brinde]</td>
 								<td>							
 									<button class='btn_alterar' value='$linha[id_barbearia]'>Alterar</button>
 									<button class='btn_excluir' value='$linha[id_barbearia]'>Remover</button>
 								</td>
 							  </tr>";
 							  
-					}
+						}
+					
+					?>
 				
-				?>
-			
-			</tbody>
-			
-		</table>
+				</tbody>
+				
+			</table>
+		
+		</div>
 		
 	</body>
 	

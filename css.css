@@ -1,21 +1,89 @@
 .form{
+	
 	text-align: center;
-	margin: 30px auto;
+	
 }
 
 table, tr, td, th{
+	
 	font-size: 25px;
 	text-align: center;
-	margin: 0 auto;
 	border: 2px solid black;
 	font-family: arial;
+	padding: 5px;
+	
 }
 
-label.label{
+th{
+	
+	color: blue; 
+	
+}
+
+.table_css{
+	
+	max-width: 90%;
+	margin-top: 0;
+	margin: 0 auto;
+	
+}
+
+table td:hover, th:hover{
+	
+	transition: 0.5s;
+	border-radius: 13px;
 	font-size: 25px;
+	background-color: #CC00CC;
+	color: white;
+	
 }
 
-p.a{
-	text-align:center; 
+label{
+	
+	font-size: 20px;
+	
 }
 
+.label2{
+	
+	color: red;
+	
+}
+
+a{
+	
+	text-align:center;
+	text-decoration: none;
+	color: blue;
+	font-size: 20px;
+	
+}
+
+img{
+	
+	margin: 0 auto;
+	position: relative;
+	max-width: 65%;
+	height: auto;
+	display: block;
+	
+}
+
+body{
+	
+	background-color: rgb(240, 240, 240);
+	text-align: center;
+	padding: 0;
+	margin: 0 auto;
+	
+}
+
+.status{
+	
+	font-size: 30px;
+	background-color: rgb(200, 200, 200);
+	max-width: 70%;
+	margin: 0 auto;
+	border: 1px solid black;
+	
+}
