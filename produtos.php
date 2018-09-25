@@ -51,7 +51,7 @@
 						var nova_linha = 
 						
 						"<tr>" +
-							"<td>" + $("#nome_produto").val() + "</td>" +
+							"<td>" + $("#produto").val() + "</td>" +
 							
 							"<td>" + $("#precoProd").val() + "</td>" +
 							
@@ -77,8 +77,8 @@
 					
 					.fail(function(jqXHR, textStatus, msg){
 						
-						alert("Deu erro");
-						alert(textStatus);
+						//alert("Deu erro");
+						alert(jqXHR.responseText);
 						
 					});
 					
@@ -213,7 +213,7 @@
 			<button><a href="produtos.php">Produtos</a></button>
 		</p>
 		
-		<form id="form" class="form">
+		<div id="form" class="form">
 			
 			<label class="label">Nome Produto: </label>
 			<input type="text" name="produto" id="produto"/>
@@ -256,7 +256,7 @@
 			<br />
 			<br />
 			
-		</form>
+		</div>
 		
 		
 		<div class="table_css">
