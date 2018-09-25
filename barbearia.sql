@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 23-Set-2018 às 19:13
+-- Data de Criação: 25-Set-2018 às 14:48
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -35,16 +35,17 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `varejo` varchar(100) NOT NULL,
   `qtdMin` varchar(100) NOT NULL,
   `desconto` varchar(100) NOT NULL,
+  `descontao` varchar(100) NOT NULL,
   PRIMARY KEY (`id_produto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
 
 --
 -- Extraindo dados da tabela `produto`
 --
 
-INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco`, `varejo`, `qtdMin`, `desconto`) VALUES
-(3, 'Gel', 9.99, 'sim', '10', '0'),
-(4, 'Pomada', 8.75, 'sim', '0', '0');
+INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco`, `varejo`, `qtdMin`, `desconto`, `descontao`) VALUES
+(49, 'gel', 100, 'n', 'N/A', 'N/A', '100'),
+(50, 'gelzao	', 200, 's', '50', '25', '50');
 
 -- --------------------------------------------------------
 
@@ -58,17 +59,7 @@ CREATE TABLE IF NOT EXISTS `servico` (
   `preco` double NOT NULL,
   `brinde` varchar(100) NOT NULL,
   PRIMARY KEY (`id_barbearia`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
-
---
--- Extraindo dados da tabela `servico`
---
-
-INSERT INTO `servico` (`id_barbearia`, `nome_servico`, `preco`, `brinde`) VALUES
-(5, 'Barba', 25, ''),
-(6, 'Cabelo', 40, ''),
-(7, 'Corte', 10, 'leite'),
-(8, 'Barba', 15, 'Vale Sorvete');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -31,11 +31,13 @@
 						url : "produto.php",
 						type : 'post',
 						data : {
+							
 							nome_produto : $("#produto").val(),
 							preco : $("#precoProd").val(),
 							varejo : $(".varejo:checked").val(),
 							qtdMin : $("#qtdMin").val(),
 							desconto : $("#desconto").val()
+							
 						},
 						
 						beforeSend : function(){
@@ -48,30 +50,48 @@
 					
 					.done(function(msg){
 						
+						$("#status").html("Cadastrado com sucesso!");
+						
+						if( $("#qtdMin").val() == '' || $("#desconto").val() == ''){
+							
+							var qtdMin = 'N/A';
+							var desconto = 'N/A';
+							
+							var descontao = 'N/A';
+							
+						}else{
+							
+							var qtdMin =  $("#qtdMin").val() ;
+							var desconto = $("#desconto").val();
+							
+							var descontao = parseInt($("#precoProd").val()) - ( parseInt($("#precoProd").val()) * ( parseInt($("#desconto").val()) / 100));
+							
+						}
+						
 						var nova_linha = 
 						
 						"<tr>" +
-							"<td>" + $("#produto").val() + "</td>" +
+							"<td class='alt_nome' >" + $("#produto").val() + "</td>" +
 							
-							"<td>" + $("#precoProd").val() + "</td>" +
+							"<td class='alt_preco' >" + $("#precoProd").val() + "</td>" +
 							
-							"<td>" + $("#varejo").val() + "</td>" +
+							"<td class='alt_unit' >" + qtdMin + "</td>" +
 							
-							"<td>" + $("#qtdMin").val() + "</td>" +
+							"<td class='alt_desc' >" + desconto + "</td>" +
 							
-							"<td>" + $("#desconto").val() + "</td>" +
+							"<td class='alt_desct' >" + descontao + "</td>" +
 							
 							"<td>" +
 							
-								"<button value='" + msg + "' class='btn_exculir'>Remover</button>" +
+								"<button value='" + msg + "' class='btn_alterar'>Alterar</button>" +
+								"<button value='" + msg + "' class='btn_excluir'>Remover</button>" +
 							
 							"</td>" +
 						"</tr>";
 						
 						$("table").append(nova_linha);
-						$("#status").html("<b>Cadastrado!!!</b>");
 						
-						alert("Deu certo!!");
+						// alert(msg);
 						
 					})
 					
@@ -198,6 +218,52 @@
 					
 				});
 				
+				//#################################################################################################
+				
+				//											REMOVER
+				
+				//#################################################################################################
+				
+				$(document).on("click", ".btn_excluir", function(){
+					
+					var id = $(this).val();
+					var linha_remove = $(this).closest("tr");
+					
+					$.ajax({
+						
+						url : "excluir.php",
+						type : "post",
+						data : {
+							
+							id: id
+							
+						},
+						
+						beforeSend : function(){
+							
+							$("#status").html("Estamos removendo...");
+							
+						}
+						
+					})
+					
+					.done(function(msg){
+						
+						if( msg == '1' ){
+							
+							linha_remove.remove();
+							$("#status").html("Removido com sucesso!");
+							
+						}else{
+							
+							$("#status").html("Não é possível remover este produto. Esta vinculado à um brinde!");
+							
+						}
+						
+					})
+					
+				});
+				
 			});
 			
 		</script>
@@ -221,7 +287,7 @@
 			<br />
 			
 			<label class="label">Preço: </label>
-			<input type="number" name="precoProd" id="precoProd" step="0.01"/>
+			<input type="number" name="precoProd" id="precoProd" step="0.1"/>
 			<br />
 			<br />
 			
@@ -235,7 +301,7 @@
 			<div id="esconder" style="display:none">
 			
 				<label class="label" >Quantidade Mínima: </label>
-				<input type="number" id="qtdMin" name="qtdMin" step="1.0" />
+				<input type="number" id="qtdMin" name="qtdMin" step="0.1" />
 				<br />
 				<br />
 				
@@ -287,7 +353,7 @@
 							
 							if( $linha["varejo"] == "s" ){
 								
-								$descontao = $linha["preco"] - ($linha["preco"] * ($linha["desconto"] / 100));
+								$descontao = $linha["descontao"];
 								$qtdMin = $linha["qtdMin"];
 								$desconto = $linha["desconto"];
 								
