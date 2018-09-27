@@ -256,7 +256,7 @@
 							
 						}else{
 							
-							$("#status").html("Não é possível remover este produto. Esta vinculado à um brinde!");
+							$("#status").html("Erro na remoção!");
 							
 						}
 						
