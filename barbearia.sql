@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 25-Set-2018 às 14:48
+-- Data de Criação: 27-Set-2018 às 13:42
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -25,6 +25,27 @@ USE `barbearia`;
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `brinde`
+--
+
+CREATE TABLE IF NOT EXISTS `brinde` (
+  `id_brinde` int(11) NOT NULL AUTO_INCREMENT,
+  `brinde` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_brinde`),
+  KEY `id_brinde` (`id_brinde`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Extraindo dados da tabela `brinde`
+--
+
+INSERT INTO `brinde` (`id_brinde`, `brinde`) VALUES
+(1, 'CafÃ©'),
+(2, 'chocolate');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `produto`
 --
 
@@ -37,15 +58,7 @@ CREATE TABLE IF NOT EXISTS `produto` (
   `desconto` varchar(100) NOT NULL,
   `descontao` varchar(100) NOT NULL,
   PRIMARY KEY (`id_produto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51 ;
-
---
--- Extraindo dados da tabela `produto`
---
-
-INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco`, `varejo`, `qtdMin`, `desconto`, `descontao`) VALUES
-(49, 'gel', 100, 'n', 'N/A', 'N/A', '100'),
-(50, 'gelzao	', 200, 's', '50', '25', '50');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -56,10 +69,34 @@ INSERT INTO `produto` (`id_produto`, `nome_produto`, `preco`, `varejo`, `qtdMin`
 CREATE TABLE IF NOT EXISTS `servico` (
   `id_barbearia` int(11) NOT NULL AUTO_INCREMENT,
   `nome_servico` varchar(100) NOT NULL,
-  `preco` double NOT NULL,
-  `brinde` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_barbearia`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `preco` float NOT NULL,
+  `cod_brinde` int(100) DEFAULT NULL,
+  PRIMARY KEY (`id_barbearia`),
+  KEY `brinde` (`cod_brinde`),
+  KEY `brinde_2` (`cod_brinde`),
+  KEY `brinde_3` (`cod_brinde`),
+  KEY `brinde_4` (`cod_brinde`),
+  KEY `brinde_5` (`cod_brinde`),
+  KEY `cod_brinde` (`cod_brinde`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+--
+-- Extraindo dados da tabela `servico`
+--
+
+INSERT INTO `servico` (`id_barbearia`, `nome_servico`, `preco`, `cod_brinde`) VALUES
+(7, 'Barba', 35, 1),
+(9, 'Aparar alt', 66, 1);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `servico`
+--
+ALTER TABLE `servico`
+  ADD CONSTRAINT `servico_ibfk_1` FOREIGN KEY (`cod_brinde`) REFERENCES `brinde` (`id_brinde`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
