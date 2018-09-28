@@ -1,11 +1,3 @@
-<?php
-
-	include("conexao.php");
-	
-	$sql = "SELECT * FROM servico";
-	$resultado = mysqli_query($link,$sql) or die("erro");
-
-?>
 <!DOCTYPE html>
 
 <html lang="pt-Br">
@@ -24,6 +16,10 @@
 			
 				$("#cadastrar").click(function(){
 					
+					var selecionado =  $("#brindeSelect option:selected").val();
+					
+					// alert(selecionado);
+					
 					///////////////// CADASTRO //////////////
 					$.ajax({
 						
@@ -32,7 +28,7 @@
 						data : {
 							nome_servico : $("#servico").val(),
 							preco : $("#preco").val(),
-							brinde : $("#brinde").val()
+							brinde : selecionado
 						},
 						
 						beforeSend : function(){
@@ -43,33 +39,39 @@
 					})
 					
 					.done(function(msg){
-						 if($("#brinde").val()!=""){
-								var filho = "option[value=" + $("#brinde").val() + "]";
-								var brinde = $("#brinde").children(filho).html() ;
-						 }
-						 else{
-							 var brinde = "N/A";
-						 }
+						
+				     	if($("#brindeSelect option:selected").val() != ""){
+							
+							var exibir = $("#brindeSelect option:selected").text();
+							
+						}
+						else{
+							
+							var exibir = "N/A";
+							
+						}
 						 
 				     	  var nova_linha =
 						 
 				     	    "<tr>" +
 								"<td>" + $("#servico").val() + "</td>	" +							
 								"<td>" + $("#preco").val() + "</td>" +							
-								"<td>" + brinde + "</td>" +							
+								"<td>" + exibir + "</td>" +							
 								"<td>" +
 									"<button value='" + msg + "' class='btn_alterar'>Alterar</button>" +
 									"<button value='" + msg + "' class='btn_excluir'>Remover</button>" +
 								"</td>" +							
 						    "</tr>";
-				          $("table").append(nova_linha);
-				          $("#status").html("<b>Cadastrado!!!</b>");
+							
+				        // alert(exibir);
+				        $("table").append(nova_linha);
+				        $("#status").html("Serviço cadastrado com sucesso!");
+						
 				    })
 					
 					.fail(function(jqXHR, textStatus, msg){
 						
-						//alert("Deu erro");
-						//alert(textStatus);
+						alert("Deu erro");
 						alert(msg);
 					});
 					
@@ -109,7 +111,8 @@
 					})
 					
 					.done(function(msg){
-						$("#status").html("Brinde alterado com sucesso!");
+						
+						$("#status").html("Altere as informações necessárias...");
 						
 						coluna_brinde.html(msg);
 					
@@ -132,12 +135,12 @@
 					
 					id_alterando = $(this);
 					
-					coluna_nome =    $(this).closest('tr').children("td.alt_nome");
-					coluna_preco =   $(this).closest('tr').children("td.alt_preco");
-					coluna_brinde  = $(this).closest('tr').children("td.alt_brinde");
+					coluna_nome 	=  $(this).closest('tr').children("td.alt_nome");
+					coluna_preco 	=  $(this).closest('tr').children("td.alt_preco");
+					coluna_brinde  	=  $(this).closest('tr').children("td.alt_brinde");
 					
-					alterar_nome = 	  $(this).closest('tr').children("td.alt_nome").children("input");
-					alterar_preco =    $(this).closest('tr').children("td.alt_preco").children("input");
+					alterar_nome 	=  $(this).closest('tr').children("td.alt_nome").children("input");
+					alterar_preco 	=  $(this).closest('tr').children("td.alt_preco").children("input");
 					alterar_brinde  =  $(this).closest('tr').children("td.alt_brinde").children("select");
 					
 					
@@ -162,10 +165,8 @@
 
 					})
 					
-					
-					
 					.done(function(msg){
-						alert(msg);
+						
 						$("#status").html("Alterado com sucesso!");
 						
 						coluna_nome.html(alterar_nome.val());
@@ -200,7 +201,7 @@
 			
 				$(document).on("click", ".btn_excluir", function(){
 					
-					var id=$(this).val();
+					var id = $(this).val();
 					var linha_remove = $(this).closest("tr");
 					
 					$.ajax({
@@ -235,6 +236,13 @@
 						
 					})
 					
+					.fail(function(jqXHR, textStatus, msg){
+						
+						alert("Algo deu errado :(");
+						alert(msg);
+						
+					})
+					
 				});
 				
 				//#################################################################################################
@@ -252,14 +260,42 @@
 						type : "post",
 						data : {
 							
-							brinde : $("#brinde").val()
+							brinde : $("#brinde_input").val()
 						},
 						
 						beforeSend: function(){
 							
-							$("#status").html("Brinde Cadastrado...");
+							$("#status").html("Cadastrando Brinde...");
 							
 						}
+						
+					})
+					
+					.done(function(msg){
+						
+						if($("#brinde").val()!=""){
+							
+							var filho = "option[value=" + $("#brinde").val() + "]";
+							var brinde = $("#brinde").children(filho).html() ;
+							
+						}
+						else{
+							
+							var brinde = "N/A";
+							
+						}
+						
+						var nova_linha = "<option name='brinde' id='brinde' value='" + msg + "'>" + brinde + "</option>";
+						
+				        $("#brindeSelect").append(nova_linha);
+						$("#status").html("Brinde cadastrado com sucesso!");
+						
+					})
+					
+					.fail(function(jqXHR, textStatus, msg){
+						
+						alert("Erro no brinde");
+						alert(msg);
 						
 					})
 					
@@ -294,9 +330,12 @@
 			
 			<div id="divBrinde">
 				<label class="label">Brinde: </label>
+				<br />
+				
 				<?php 
 					include ("selecionarBrinde.php");				
 				?>
+				
 			</div>
 			<br />
 			<br />
@@ -306,7 +345,7 @@
 			<br />
 			
 			<label class="label">Adicionar brinde: </label>
-			<input type="text" name="brinde" id="brinde" placeholder="Adicionar novo brinde" />
+			<input type="text" id="brinde_input" placeholder="Adicionar novo brinde" />
 			<button id="btnBrinde">OK</button>
 			<br />
 			<br />
@@ -325,8 +364,8 @@
 				
 					<tr>
 						<th>Nome</th>
-						<th>Preço</th>
-						<th>O que tem direito</th>
+						<th>Preço (R$)</th>
+						<th>O que tem direito (brinde)</th>
 						<th>Ação</th>
 					</tr>
 					
